@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+ 
+<div class="slideshow-container">
+  <div class="slideshow-inner">
+    <div class="mySlides fade">
+      <img  src="~/imagem/slide1.jpg" style='width: 100%;' alt="sally lightfoot crab"/>
+      <div class="text">ESTRUTURA, Técnicas modernas e tratamentos de excelência</div>
+    </div>
+                
+    <div class="mySlides fade">
+      <img  src="~/imagem/slide2.jpg" style='width: 100%;' alt="fighting nazca boobies"/>
+      <div class="text">IMPLANTES DENTÁRIOS: Melhore sua qualidade de vida com implantes dentários!</div>
+    </div>
+                
+    <div class="mySlides fade">
+      <img  src="~/imagem/slide3.jpg" style='width: 100%;' alt="otovalo waterfall"/>
+      <div class="text">CIRURGIAS GERAIS </div>
+    </div>
+                
+    <div class="mySlides fade">
+      <img  src="~/imagem/slide4.jpg" style='width: 100%;' alt="pelican"/>
+      <div class="text">ESTÉTICA DENTAL PERFEITA: devolva a harmonia ao seu sorriso.</div>
+    </div>
+
+    <div>
+      <a class="prev" onclick='plusSlides(-1)'>&#10094;</a>
+      <a class="next" onclick='plusSlides(1)'>&#10095;</a>
+    </div>
+    <br/>
+    <div style='text-align: center;'>
+      <span class="dot" onclick='currentSlide(1)'></span>
+      <span class="dot" onclick='currentSlide(2)'></span>
+      <span class="dot" onclick='currentSlide(3)'></span>
+      <span class="dot" onclick='currentSlide(4)'></span>
+    </div>
+  </div>
+</div>
+<section>   
+  <ul class="esconde" id="album-fotos">
+    <li id="foto01">
+      <h4>Esfihas Doces</h4>
+      <p>A partir de: R$ 1,50 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+    <li id="foto02">
+      <h4>Esfihas Salgadas</h4>
+      <p>A partir de: R$ 2,00 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+    <li id="foto03">
+      <h4>Brotos de Pizzas</h4>
+      <p>A partir de: R$ 16,50 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+    <li id="foto04">
+      <h4>Sucos Naturais</h4>
+      <p>A partir de: R$ 2,50 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+    <li id="foto05">
+      <h4>Pizzas</h4>
+      <p>A partir de: R$ 25,00 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+    <li id="foto06">
+      <h4>Pizzas Doces</h4>
+      <p>A partir de: R$ 1,50 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+    <li id="foto07">
+      <h4>Porções</h4>
+      <p>A partir de: R$ 14,90 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>       
+    <li id="foto08">
+      <h4>Refrigerantes</h4>
+      <p>A partir de: R$ 10,00 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+    <li id="foto09">
+      <h4>Açai</h4>
+      <p>A partir de: R$ 8,00 </p>
+      <a asp-action="Formulario" class="btn btn-primary">Comprar</a>
+    </li>
+  </ul>    
+</section>

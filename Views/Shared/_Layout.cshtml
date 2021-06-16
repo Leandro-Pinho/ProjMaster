@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Master Pizzaria</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/estilo.css" />
+    
+    <link rel="shortcut icon" href="../imagem/IMG-20180712-WA0010.jpg"/>
+</head>
+<body>
+        <header>
+           <nav>
+               <div class="top-header">
+                  <small>Satisfaça seu apetite!</small>
+                  <div class="nav-icons">
+                       <ion-icon name="search-outline"></ion-icon>
+                       <ion-icon name="bag-handle-outline"></ion-icon>
+                       <a asp-action="Formulario"><ion-icon name="person-outline"></ion-icon></a>
+                       <section>
+                    @if(Context.Session.GetInt32("idUsuario") != null)
+                    {
+                        <span>Olá @Context.Session.GetString("nomeUsuario")</span>
+                        <a asp-action="Logout" class="btn btn-outline-danger">Sair</a>
+                    }
+                </section>
+                  </div>
+               </div>
+               <div class="bottom-header">
+                   <div class="brand">
+                       <h5>Master Pizzaria</h5>
+                   </div>
+
+                   <ul>
+                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">PIZZAS</a></li>
+                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Formulario">Faça seu pedido!</a></li>
+                   </ul>
+                   
+                   <label for="toggle-nav">
+                        <ion-icon name="filter-circle-outline"></ion-icon>
+                   </label>   
+                </div>
+                
+            </nav> 
+        </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+            <p>Copyright 2021 &nbsp;<a href="http://facebook.com" target="_blank">Facebook</a> | <a href="http://twitter.com" target="_blank">Twitter</a></p>
+    </footer>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

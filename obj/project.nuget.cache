@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "BwzFzQfTeYbmSo3Gwh6lgvHeytRYYtKQaVN6uPgz1ZFsObiTI7/S9XzCdbqRVhH0bF0wjRvqRv/L0jWI2CU4Zw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ADMIN\\.nuget\\packages\\mysqlconnector\\1.2.1\\mysqlconnector.1.2.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

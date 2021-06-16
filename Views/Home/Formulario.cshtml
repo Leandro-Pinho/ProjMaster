@@ -1,0 +1,15 @@
+@model ItemPedido
+<div id="for" class="row"> 
+<h2>Informe seu pedido?</h2>
+
+<form method="POST">
+    <label asp-for="descricao">descricao</label>
+    <input asp-for="descricao" type="text">
+    <label asp-for="quantidade">quantidade</label>
+    <input asp-for="quantidade" type="number">
+    <label asp-for="valor">valor</label>
+    <input asp-for="valor" type="number">
+    
+    <input type="submit"  asp-action="Listar">
+</form>
+</div>
