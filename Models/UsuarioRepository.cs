@@ -1,85 +1,53 @@
 using System.Collections.Generic;
-using MySqlConnector;
+using System.Linq;
 
 namespace ProjMaster.Models
 {
-    public class UsuarioRepository
+    public class UsuarioService
     {
-        private const string _strConexao = "Database=pizzaria;Data Source=localhost;User Id=root;";
-        public void Insert()
+        public List<Usuario> Listar()
         {
-            MySqlConnection conexao = new MySqlConnection(_strConexao);
-            conexao.Open();
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {
+                return bc.usuarios.ToList();
+            }
         }
-        public void Insert(Usuario novoUsuario)
+        public Usuario Listar(int id)
         {
-            MySqlConnection conexao = new MySqlConnection(_strConexao);
-            conexao.Open();
-            string sql = "INSERT INTO usuario(nome, login, senha, dataNascimento) VALUES (@Nome, @Login, @Senha, @dataNascimento)";
-            MySqlCommand comando = new MySqlCommand(sql, conexao);
-            comando.Parameters.AddWithValue("@Nome", novoUsuario.Nome);
-            comando.Parameters.AddWithValue("@Login", novoUsuario.Login);
-            comando.Parameters.AddWithValue("@Senha", novoUsuario.Senha);
-            comando.Parameters.AddWithValue("@dataNascimento", novoUsuario.DataNascimento);
-            comando.ExecuteNonQuery();
-            conexao.Close();
-        } 
-        public List<Usuario> Query()
-        {
-            MySqlConnection conexao = new MySqlConnection(_strConexao);
-            conexao.Open();
-            string sql = "SELECT * FROM Usuario ORDER BY nome";
-            MySqlCommand comandoQuery = new MySqlCommand(sql, conexao);
-            MySqlDataReader reader = comandoQuery.ExecuteReader();
-            List<Usuario> lista = new List<Usuario>();
-            while (reader.Read())
-        {
-            Usuario usr = new Usuario();
-            usr.Id = reader.GetInt32("Id");
-       
-            if(!reader.IsDBNull(reader.GetOrdinal("Nome")))
-                usr.Nome = reader.GetString("Nome");
-       
-            if(!reader.IsDBNull(reader.GetOrdinal("Login")))
-                usr.Login = reader.GetString("Login");
-
-            if(!reader.IsDBNull(reader.GetOrdinal("Senha")))
-                usr.Senha = reader.GetString("Senha");
-
-             if(!reader.IsDBNull(reader.GetOrdinal("dataNascimento")))
-                usr.DataNascimento = reader.GetDateTime("dataNascimento");    
-            lista.Add(usr);
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {
+                return bc.usuarios.Find(id);
+            }
         }
-        conexao.Close();
-        return lista;
-        }   
-        public Usuario QueryLogin(Usuario u)
+        public void incluirUsuario(Usuario novoUser)
         {
-            MySqlConnection conexao = new MySqlConnection(_strConexao);
-            conexao.Open();
-            string sql = "SELECT * FROM Usuario WHERE login = @Login AND senha = @Senha";
-            MySqlCommand comandoQuery = new MySqlCommand(sql, conexao);
-            comandoQuery.Parameters.AddWithValue("@Login", u.Login);
-            comandoQuery.Parameters.AddWithValue("@Senha", u.Senha);
-            MySqlDataReader reader = comandoQuery.ExecuteReader();
-            Usuario usr = null;
-            if(reader.Read())
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {
+                bc.Add(novoUser);
+                bc.SaveChanges();
+            }
+        }
+        public void editarUsuario(Usuario userEditado)
         {
-            usr = new Usuario();
-            usr.Id = reader.GetInt32("Id");
-            if(!reader.IsDBNull(reader.GetOrdinal("Nome")))
-                usr.Nome = reader.GetString("Nome");
-       
-            if(!reader.IsDBNull(reader.GetOrdinal("Login")))
-                usr.Login = reader.GetString("Login");
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {
+                Usuario u = bc.usuarios.Find(userEditado.Id);
 
-            if(!reader.IsDBNull(reader.GetOrdinal("Senha")))
-                usr.Senha = reader.GetString("Senha");
-        }
-   
-        conexao.Close();
-        return usr;
-        }
+                u.login = userEditado.login;
+                u.Nome = userEditado.Nome;
+                u.senha = userEditado.senha;
+                u.tipo = userEditado.tipo;
 
+                bc.SaveChanges();
+            }
+        }
+        public void excluirUsuario(int id)
+        {
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {
+                bc.usuarios.Remove(bc.usuarios.Find(id));
+                bc.SaveChanges();
+            }
+        }
     }
 }

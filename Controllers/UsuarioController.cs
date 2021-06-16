@@ -1,54 +1,84 @@
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ProjMaster.Models;
 
-namespace ProjMaster.Controllers
+namespace ProjMaster.Models
 {
-    public class UsuarioController: Controller
+    public class UsuariosController : Controller
     {
-       public IActionResult Cadastro()
+        public IActionResult ListaDeUsuarios()
         {
-            if(HttpContext.Session.GetInt32("idUsuario") == null)
-            return RedirectToAction("Login");
-            return View();
-        }
-        
+            Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioEAdmin(this);
+
+            return View(new UsuarioService().Listar());
+        }  
+        public IActionResult editarUsuario(int id)
+        {
+            Usuario u = new UsuarioService().Listar(id);
+
+            return View(u);
+        } 
         [HttpPost]
-        public IActionResult Cadastro(Usuario u)
+        public IActionResult editarUsuario(Usuario userEditado)
         {
-            UsuarioRepository ur = new UsuarioRepository();
-            ur.Insert(u);
-            ViewBag.Mensagem = "Usuario Cadastrado com sucesso";
-            return View();
+            UsuarioService us = new UsuarioService();
+            us.editarUsuario(userEditado);
+
+            return RedirectToAction("ListaDeUsuarios");
         }
-        public IActionResult Login()
+        public IActionResult RegistrarUsuarios()
         {
+            Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioEAdmin(this);
             return View();
         }
         [HttpPost]
-        public IActionResult Login(Usuario u)
+        public IActionResult RegistrarUsuarios(Usuario novoUser)
         {
-            UsuarioRepository ur = new UsuarioRepository();
-            Usuario usuario = ur.QueryLogin(u);
-            if(usuario != null)
+            Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioEAdmin(this);
+
+            novoUser.senha = Criptografo.TextoCriptografado(novoUser.senha);
+
+            UsuarioService us = new UsuarioService();
+            us.incluirUsuario(novoUser);
+            
+            return RedirectToAction("cadastroRealizado");
+        }
+        public IActionResult ExcluirUsuario(int id)
+        {
+            return View(new UsuarioService().Listar(id));
+        }
+        [HttpPost]
+        public IActionResult ExcluirUsuario(string decisao, int id)
+        {
+            if(decisao=="EXCLUIR")
             {
-                ViewBag.Mensagem = "Você está logado";
-                HttpContext.Session.SetInt32("idUsuario", usuario.Id);
-                HttpContext.Session.SetString("nomeUsuario", usuario.Nome);
-                return View("Home");
+                ViewData["Mensagem"] = "Exclusão do usuario "+ new UsuarioService().Listar(id).Nome + " realizada com sucesso";
+                new UsuarioService().excluirUsuario(id);
+                return View("ListaDeUsuarios", new UsuarioService().Listar());
             }
             else
             {
-            ViewBag.Mensagem = "Falha no Login";
-            return View();
+                ViewData["Mensagem"] = "Exclusão cancelada";
+                return View("ListaDeUsuarios", new UsuarioService().Listar());
             }
         }
-           public IActionResult logout()
+        public IActionResult cadastroRealizado()
         {
-            HttpContext.Session.Clear();//Limpar toda sessão
-            return View("Home");
-        }
+            Autenticacao.CheckLogin(this);
+            Autenticacao.verificaSeUsuarioEAdmin(this);
 
+            return View();
+        }
+        public IActionResult NeedAdmin()
+        {
+            Autenticacao.CheckLogin(this);
+            return View();
+        }
+        public IActionResult Sair()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

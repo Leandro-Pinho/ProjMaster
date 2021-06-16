@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {}
+    "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {
+    "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
+        "projectUniqueName": "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
         "projectName": "ProjMaster",
-        "projectPath": "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
+        "projectPath": "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\obj\\",
+        "outputPath": "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -36,6 +36,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "MySqlConnector": {
               "target": "Package",
               "version": "[1.2.1, )"
@@ -43,6 +47,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[11.0.2, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             }
           },
           "imports": [
