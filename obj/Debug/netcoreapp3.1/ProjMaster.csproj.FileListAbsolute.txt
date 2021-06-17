@@ -269,3 +269,9 @@ C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\bin\Debug\netcoreapp3.1\runtimes\w
 C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\CarrinhoCompra\Index.cshtml.g.cs
+C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Lanche\Details.cshtml.g.cs
+C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Lanche\List.cshtml.g.cs
+C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\CarrinhoCompraResumo\Default.cshtml.g.cs
+C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\CategoriaMenu\Default.cshtml.g.cs
+C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LanchesResumo.cshtml.g.cs

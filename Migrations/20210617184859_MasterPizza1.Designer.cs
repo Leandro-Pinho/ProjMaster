@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjMaster.Models;
 
 namespace ProjMaster.Migrations
 {
     [DbContext(typeof(BibliotecaContext))]
-    partial class BibliotecaContextModelSnapshot : ModelSnapshot
+    [Migration("20210617184859_MasterPizza1")]
+    partial class MasterPizza1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
