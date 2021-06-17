@@ -15,23 +15,7 @@ namespace ProjMaster.Controllers
             _logger = logger;
         }
         
-        public IActionResult Formulario()
-        {
-            if(HttpContext.Session.GetInt32("idUsuario") == null)
-            return RedirectToAction("Login");
-            
-            return View(); 
-            
-        }
-
-        
-        public IActionResult Listar(ItemPedido compra)
-        {   
-            Dados.PedidoAtual.lista(compra);
-            List<ItemPedido> nova = Dados.PedidoAtual.Listar();
-            return View(nova);
-        }
-        
+                  
         public IActionResult Index()
         {
             return View();
@@ -55,7 +39,7 @@ namespace ProjMaster.Controllers
                 return View();
             }
         }
-           public IActionResult logout()
+        public IActionResult logout()
         {
             HttpContext.Session.Clear();//Limpar toda sessão
             return View("Index");

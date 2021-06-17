@@ -10,5 +10,10 @@ namespace ProjMaster.Models
             optionsBuilder.UseMySql("Server=localhost;DataBase=MasterPizza;Uid=root;");
         }
         public DbSet<Usuario> usuarios {get; set;}
+        public DbSet<Lanche> Lanches { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
+       
     }
 }

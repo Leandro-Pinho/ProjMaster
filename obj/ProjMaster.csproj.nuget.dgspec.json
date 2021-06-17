@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {}
+    "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {}
   },
   "projects": {
-    "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {
+    "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
         "projectName": "ProjMaster",
-        "projectPath": "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\ProjMaster.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Desktop\\Curso Senac\\ProjMaster\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -36,21 +36,45 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[3.1.9, )"
             },
-            "MySqlConnector": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[1.2.1, )"
+              "version": "[3.1.9, )"
             },
-            "Newtonsoft.Json": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[11.0.2, )"
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[3.2.4, )"
             }
           },
           "imports": [
