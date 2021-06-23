@@ -1,50 +1,31 @@
-﻿@using Microsoft.AspNetCore.Http
-<!DOCTYPE html>
-<html lang="pt-br">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Master Pizzaria</title>
+    <title>@ViewData["Title"] - LanchesMac</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/estilo.css" />
-    
-    <link rel="shortcut icon" href="../imagem/IMG-20180712-WA0010.jpg"/>
 </head>
 <body>
-        <header>
-           <nav>
-               <div class="top-header">
-                  <small>Satisfaça seu apetite!</small>
-                  <div class="nav-icons">
-                       <ion-icon name="search-outline"></ion-icon>
-                       <ion-icon name="bag-handle-outline"></ion-icon>
-                       <a asp-action="Formulario"><ion-icon name="person-outline"></ion-icon></a>
-                       <section>
-                    @if(Context.Session.GetInt32("idUsuario") != null)
-                    {
-                        <span>Olá @Context.Session.GetString("nomeUsuario")</span>
-                        <a asp-action="Logout" class="btn btn-outline-danger">Sair</a>
-                    }
-                </section>
-                  </div>
-               </div>
-               <div class="bottom-header">
-                   <div class="brand">
-                       <h5>Master Pizzaria</h5>
-                   </div>
-
-                   <ul>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">PIZZAS</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Formulario">Faça seu pedido!</a></li>
-                   </ul>
-                   
-                   <label for="toggle-nav">
-                        <ion-icon name="filter-circle-outline"></ion-icon>
-                   </label>   
-                </div>
-                
-            </nav> 
-        </header>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LanchesMac</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="navbar-nav">
+                <li><a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a><li>
+                <li> @await Component.InvokeAsync("CategoriaMenu")</li>    
+                <li><a class="nav-link text-light" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a></li>
+                <li> @await Component.InvokeAsync("CarrinhoCompraResumo")</li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" asp-controller="Lanche" asp-action="Search" method="get">
+               <input class="form-control mr-sm-2" placeholder="Pesquisar Lanche" aria-label="Pesquisar" name="searchString" value="@ViewData["searchString"]">
+               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </nav>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -52,9 +33,10 @@
     </div>
 
     <footer class="border-top footer text-muted">
-            <p>Copyright 2021 &nbsp;<a href="http://facebook.com" target="_blank">Facebook</a> | <a href="http://twitter.com" target="_blank">Twitter</a></p>
+        <div class="container">
+            &copy; 2021 - LanchesMac - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
     </footer>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

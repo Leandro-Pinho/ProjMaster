@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using ProjMaster.Data;
 
 namespace ProjMaster.Models
 {
@@ -7,7 +8,7 @@ namespace ProjMaster.Models
     {
         public List<Usuario> Listar()
         {
-            using(BibliotecaContext bc = new BibliotecaContext())
+            using(ProjMasterContext bc = new ProjMasterContext())
             {
                 return bc.usuarios.ToList();
             }

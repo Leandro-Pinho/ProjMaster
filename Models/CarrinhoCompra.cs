@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ProjMaster.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace ProjMaster.Models
 {
     public class CarrinhoCompra
     {
-        private readonly BibliotecaContext _context;
+        private readonly ProjMasterContext _context;
 
         //injeta o contexto no construtor
-        public CarrinhoCompra(BibliotecaContext contexto)
+        public CarrinhoCompra(ProjMasterContext contexto)
         {
             _context = contexto;
         }
@@ -28,7 +29,7 @@ namespace ProjMaster.Models
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
             //obtem um serviço do tipo do nosso contexto 
-            var context = services.GetService<BibliotecaContext>();
+            var context = services.GetService<ProjMasterContext>();
 
             //obtem ou gera o Id do carrinho
             string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
@@ -48,7 +49,7 @@ namespace ProjMaster.Models
             //obttem o lanche do carrinho 
             var carrinhoCompraItem =
                     _context.CarrinhoCompraItens.SingleOrDefault(
-                        s => s.Lanche.LancheId == lanche.LancheId && s.CarrinhoCompraId == CarrinhoCompraId);
+                        s => s.Lanche.Id == lanche.Id && s.CarrinhoCompraId == CarrinhoCompraId);
 
             //se o carrinho for null cria um carrinho novo
             if (carrinhoCompraItem == null)
@@ -73,7 +74,7 @@ namespace ProjMaster.Models
         {
             var carrinhoCompraItem =
                     _context.CarrinhoCompraItens.SingleOrDefault(
-                        s => s.Lanche.LancheId == lanche.LancheId && s.CarrinhoCompraId == CarrinhoCompraId);
+                        s => s.Lanche.Id == lanche.Id && s.CarrinhoCompraId == CarrinhoCompraId);
 
             var quantidadeLocal = 0;
 

@@ -26,8 +26,15 @@ using ProjMaster.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\Views\_ViewImports.cshtml"
+using ProjMaster.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"66487ea2de5e587d836a7617b9b4680398e4be84", @"/Views/Usuario/editarUsuario.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"37db4144eb7b186270fe4997c980868a700f2142", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6f8f1973d60a303eb2e7d83897c2e45667938d8a", @"/Views/_ViewImports.cshtml")]
     public class Views_Usuario_editarUsuario : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Usuario>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "hidden", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -61,7 +68,7 @@ using ProjMaster.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<h1>Realize a Edição do Usuário</h1>\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66487ea2de5e587d836a7617b9b4680398e4be844488", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66487ea2de5e587d836a7617b9b4680398e4be844670", async() => {
                 WriteLiteral("\r\n    <input type=\"text\" name=\"Nome\" id=\"userNome\"");
                 BeginWriteAttribute("value", " value=\"", 149, "\"", 168, 1);
 #nullable restore
@@ -93,7 +100,7 @@ WriteAttributeValue("", 304, Model.senha, 304, 12, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(">\r\n\r\n    <select name=\"tipo\" id=\"userTipo\">\r\n        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66487ea2de5e587d836a7617b9b4680398e4be846103", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66487ea2de5e587d836a7617b9b4680398e4be846285", async() => {
                     WriteLiteral("Administrator");
                 }
                 );
@@ -118,7 +125,7 @@ WriteAttributeValue("", 304, Model.senha, 304, 12, false);
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66487ea2de5e587d836a7617b9b4680398e4be847793", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66487ea2de5e587d836a7617b9b4680398e4be847975", async() => {
                     WriteLiteral("Padrão");
                 }
                 );
@@ -143,7 +150,7 @@ WriteAttributeValue("", 304, Model.senha, 304, 12, false);
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    </select>\r\n\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "66487ea2de5e587d836a7617b9b4680398e4be849494", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "66487ea2de5e587d836a7617b9b4680398e4be849676", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
