@@ -1,23 +1,43 @@
-@model Lanche
+@model ProjMaster.Models.Lanche
 
-<div class="container marginTop">
-    <div class="row">
-        <div class="card">
-            <div class="Text-center view overlay hm-while-slight">
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container">
+<h1>Details</h1>
+
+<div>
+    <h4>Lanche</h4>
+    <hr />
+    <div class="Text-center view overlay hm-while-slight">
                 <img src="@Model.ImagemUrl" class="img-fluid" alt="">
                 <a href="#">
                     <div class="mask waves-effect waves-light"></div>
                 </a>
             </div>
-            <div class="card-block">
-                <h2 class="card-title">@Model.Nome</h2>
-                <p class="card-text"><h3>@Model.DescricaoDetalhada</h3></p>
-                <p class="btn btn-group pull-right">
-                    <a asp-controller="Lanche" asp-action="List" class="btn btn default">Ver todos os lanches</a>
-                    <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-lancheId="">Adicionar @Model.Nome ao carrinho 
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Genero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Genero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="IndexMain">Back to List</a>
+    <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-LancheId="@Model.Id">Incluir no Carrinho</a>
+</div>
 </div>

@@ -5,8 +5,9 @@
     <div>
         <ul class="navbar-nav">
             <li>
-                <a class="nav-link text-light" asp-area="" asp-controller="CarrinhoCompra">
-                    <span id="cart-status"><img src="~/images/cartb.png" alt="" width="20" height="20">
+                <a class="nav-link" asp-area="" asp-controller="CarrinhoCompra">
+                    <span id="cart-status">
+                        <ion-icon name="bag-outline"></ion-icon>
                         @Model.CarrinhoCompra.CarrinhoCompraItens.Count 
                     </span>
                 </a>

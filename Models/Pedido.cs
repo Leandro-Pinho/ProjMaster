@@ -9,6 +9,7 @@ namespace ProjMaster.Models
     {
         [BindNever]
         public int PedidoId  { get; set; }
+        public List<PedidoDetalhe> PedidoItens { get; set; }
 
         [Required(ErrorMessage ="Informe o Nome")]
         [Display(Name ="Nome")]

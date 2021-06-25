@@ -1,9 +1,10 @@
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using ProjMaster.Models;
+using ProjMaster.Repositories;
 using ProjMaster.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ProjMaster.Controllers
+namespace MvcMovie.Controllers
 {
     public class CarrinhoCompraController : Controller
     {
@@ -30,7 +31,7 @@ namespace ProjMaster.Controllers
         }
         public RedirectToActionResult AdicionarItemNoCarrinhoCompra( int lancheId)
         {
-            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId );
+            var lancheSelecionado = _lancheRepository.lanches.FirstOrDefault(p => p.Id == lancheId );
 
             if (lancheSelecionado != null)
             {
@@ -40,7 +41,7 @@ namespace ProjMaster.Controllers
         }
         public IActionResult RemoverItemNoCarrinhoCompra( int lancheId)
         {
-            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId );
+            var lancheSelecionado = _lancheRepository.lanches.FirstOrDefault(p => p.Id == lancheId );
 
             if (lancheSelecionado != null)
             {

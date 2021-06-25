@@ -1,17 +1,17 @@
 @model CarrinhoCompraViewModel
 
-
+<div class="container">
 <div class="row checkoutForm">
 
-    <img src="~/images/Full-Cart-icon.png" />
+    
     <div>
-        <h4> Seu carrinho de compras : </h4>
+        <h4><ion-icon name="cart"></ion-icon>Seu carrinho de compras : </h4>
     </div>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Quantidade</th>
-                <th>Lanche</th>
+                <th>Movie</th>
                 <th class="text-right">Preço</th>
                 <th class="text-right">Subtotal</th>
                 <th></th>
@@ -28,7 +28,7 @@
                         @((item.Quantidade * item.Lanche.Preco).ToString("c"))
                     </td>
                     <td class="text-center">
-                        <a asp-controller="CarrinhoCompra" asp-action="RemoverItemNoCarrinhoCompra" asp-route-lancheId="@item.Lanche.LancheId"><img src="~/images/delete.png" /></a>
+                        <a asp-controller="CarrinhoCompra" asp-action="RemoverItemNoCarrinhoCompra" asp-route-LancheId="@item.Lanche.Id"><ion-icon name="close-circle"></ion-icon></a>
                     </td>
                 </tr>
             }
@@ -44,18 +44,13 @@
     </table>
     <div class="text-right">
             <div class="btn-group">
+                <div class="btn-group mr-2">
                 <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        Adicionar mais lanches<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a asp-controller="Lanche" asp-action="List" asp-route-categoria="Normal">Normal</a></li>
-                        <li><a asp-controller="Lanche" asp-action="List" asp-route-categoria="Natural">Natural</a></li>
-                        <li class="divider"></li>
-                        <li><a asp-controller="Lanche" asp-action="List" class="btn btn default">Ver todos os lanches</a></li>
-                    </ul>
+                </div>
+                <div class="btn-group mr-2">
+                    <a class="btn btn-success" asp-controller="Lanche" asp-action="IndexMain">Adicionar mais</a>
                 </div>
             </div>
         </div>
+</div>
 </div>

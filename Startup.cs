@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using ProjMaster.Data;
 using ProjMaster.Models;
-using ProjMaster.ViewModels;
-using System.Threading.Tasks;
+using ProjMaster.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 
 namespace ProjMaster
 {
@@ -25,14 +21,14 @@ namespace ProjMaster
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
-          
-            services.AddDbContext<BibliotecaContext>(options =>
+            services.AddControllersWithViews();
+
+            services.AddDbContext<ProjMasterContext>(options=>
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+        
             services.AddTransient<ILancheRepository, LancheRepository>();
             services.AddTransient<IPedidoRepository, PedidoRepository>();
 
@@ -42,7 +38,6 @@ namespace ProjMaster
             services.AddControllersWithViews();
             services.AddMemoryCache();
             services.AddSession();
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,15 +51,9 @@ namespace ProjMaster
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseHttpsRedirection();
-            app.UseCookiePolicy();
-            app.UseSession();
-
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseSession();
 
             app.UseAuthorization();
@@ -72,17 +61,8 @@ namespace ProjMaster
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "AdminArea",
-                    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
-
-                endpoints.MapControllerRoute(
-                    name: "categoriaFiltro",
-                    pattern: "Lanche/{action}/{categoria?}",
-                    defaults: new { Controller = "Lanche", action = "List" });
-
-                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Lanche}/{action=IndexMain}/{id?}");
             });
         }
     }

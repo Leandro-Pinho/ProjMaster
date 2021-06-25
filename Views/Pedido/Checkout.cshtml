@@ -1,0 +1,82 @@
+@model Pedido
+
+<section class="order-form my-4 mx-4">
+    <div class="container pt-4">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">Você esta a um passo de completar o seu pedido! <span class="glyphicon glyphicon-ok"></span></h3>
+                <hr class="mt-1">
+            </div>
+            <form asp-action="Checkout" method="POST" class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltip01">Primeiro nome</label>
+                        <input type="text" asp-for="Nome" class="form-control" id="validationTooltip01" placeholder="Nome" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe seu Nome.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltip02">Sobrenome</label>
+                        <input type="text" asp-for="Sobrenome" class="form-control" id="validationTooltip02" placeholder="Sobrenome" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe seu Sobrenome.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltip03">E-mail</label>
+                        <input type="text" asp-for="Email" class="form-control" id="validationTooltip03" placeholder="Fulano@gmail.com" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe um Email válido.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationTooltip04">Endereço</label>
+                        <input type="text" asp-for="Endereco1" class="form-control" id="validationTooltip04" placeholder="Endereço" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe uma cidade válida.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip05">Complemento</label>
+                        <input type="text" asp-for="Endereco2" class="form-control" placeholder="Complemento">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip05">Telefone</label>
+                        <input type="text" asp-for="Telefone" class="form-control" id="validationTooltip05" placeholder="Telefone" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe um Telefone válido.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationTooltip06">Cidade</label>
+                        <input type="text" asp-for="Cidade" class="form-control" id="validationTooltip06" placeholder="Cidade" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe uma cidade válida.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip07">Estado</label>
+                        <input type="text" asp-for="Estado" class="form-control" id="validationTooltip07" placeholder="Estado" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe um estado válido.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip08">CEP</label>
+                        <input type="text" asp-for="Cep" class="form-control" id="validationTooltip08" placeholder="CEP" required>
+                        <div class="invalid-tooltip">
+                            Por favor, informe um CEP válido.
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Concluir Pedido</button>
+            </form>
+        </div>
+    </div>
+</section>
+              

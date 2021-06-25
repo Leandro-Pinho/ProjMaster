@@ -1,45 +1,50 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LanchesMac</title>
+    <title>@ViewData["Title"] - Master Pizzaria</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LanchesMac</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="navbar-nav">
-                <li><a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a><li>
-                <li> @await Component.InvokeAsync("CategoriaMenu")</li>    
-                <li><a class="nav-link text-light" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a></li>
-                <li> @await Component.InvokeAsync("CarrinhoCompraResumo")</li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" asp-controller="Lanche" asp-action="Search" method="get">
-               <input class="form-control mr-sm-2" placeholder="Pesquisar Lanche" aria-label="Pesquisar" name="searchString" value="@ViewData["searchString"]">
-               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
-        </div>
-    </nav>
-    <div class="container">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-danger box-shadow mb-3 justify-content-center">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Lanche" asp-action="IndexMain">Master Pizzaria</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li> @await Component.InvokeAsync("CarrinhoCompraResumo")</li>
+                    </ul>
+                    <li class="">
+                                    <a class="nav-link text-light" href="/Usuarios/ListaDeUsuarios" id="menuUsuarios">Usuarios</a>
+                                </li>
+
+                                <li class="" >
+                                    <a class="btn btn-outline-light my-2 my-sm-0" href="/Usuarios/Sair" id="menuUsuarios">Logout</a>
+                                </li>
+                </div>
+            </div>
+        </nav>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    </header>
+    
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - LanchesMac - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Master Pizza 
         </div>
     </footer>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

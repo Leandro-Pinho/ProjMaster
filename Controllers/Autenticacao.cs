@@ -2,11 +2,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjMaster.Data;
+using ProjMaster.Models;
 
-namespace ProjMaster.Models
+namespace ProjMaster.Controllers
 {
     public class Autenticacao
     {
+        private readonly ProjMasterContext _context;
+
+        public Autenticacao(ProjMasterContext context)
+        {
+            _context = context;
+        }
         public static void CheckLogin(Controller controller) // checar o login
         {   
             if(string.IsNullOrEmpty(controller.HttpContext.Session.GetString("login")))
@@ -16,7 +24,7 @@ namespace ProjMaster.Models
         }
         public static bool verificaLoginSenha(string login, string senha, Controller controller) // verifica o login, vê se usuario e senha estão corretos.
         {
-            using(BibliotecaContext bc = new BibliotecaContext())
+            using(ProjMasterContext bc = new ProjMasterContext())
             {
                 verificaSeUsuarioAdminExiste(bc);
 
@@ -37,7 +45,7 @@ namespace ProjMaster.Models
                 }
             }
         }
-        public static void verificaSeUsuarioAdminExiste(BibliotecaContext bc)
+        public static void verificaSeUsuarioAdminExiste(ProjMasterContext bc)
         {
             IQueryable<Usuario> userEncontrado = bc.usuarios.Where(u => u.login=="admin");
 

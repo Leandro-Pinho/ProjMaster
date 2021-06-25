@@ -15,14 +15,14 @@ namespace ProjMaster.Models
         }
         public Usuario Listar(int id)
         {
-            using(BibliotecaContext bc = new BibliotecaContext())
+            using(ProjMasterContext bc = new ProjMasterContext())
             {
                 return bc.usuarios.Find(id);
             }
         }
         public void incluirUsuario(Usuario novoUser)
         {
-            using(BibliotecaContext bc = new BibliotecaContext())
+            using(ProjMasterContext bc = new ProjMasterContext())
             {
                 bc.Add(novoUser);
                 bc.SaveChanges();
@@ -30,7 +30,7 @@ namespace ProjMaster.Models
         }
         public void editarUsuario(Usuario userEditado)
         {
-            using(BibliotecaContext bc = new BibliotecaContext())
+            using(ProjMasterContext bc = new ProjMasterContext())
             {
                 Usuario u = bc.usuarios.Find(userEditado.Id);
 
@@ -44,7 +44,7 @@ namespace ProjMaster.Models
         }
         public void excluirUsuario(int id)
         {
-            using(BibliotecaContext bc = new BibliotecaContext())
+            using(ProjMasterContext bc = new ProjMasterContext())
             {
                 bc.usuarios.Remove(bc.usuarios.Find(id));
                 bc.SaveChanges();

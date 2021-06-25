@@ -1,82 +1,186 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProjMaster.Models;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjMaster.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProjMaster.Data;
+using ProjMaster.Models;
 
 namespace ProjMaster.Controllers
 {
     public class LancheController : Controller
     {
-        private readonly ILancheRepository _lancheRepository;
-        private readonly ICategoriaRepository _categoriaRepository;
+        private readonly ProjMasterContext _context;
 
-        public LancheController(ILancheRepository lancheRepository, ICategoriaRepository categoriaRepository)
+        public LancheController(ProjMasterContext context)
         {
-            _lancheRepository = lancheRepository;
-            _categoriaRepository = categoriaRepository;
+            _context = context;
         }
 
-        public IActionResult list(string categoria)
-        {
-            string _categoria = categoria;
-            IEnumerable<Lanche> lanches; 
-            string categoriaAtual = string.Empty;
+        // GET: Movies
+        public async Task<IActionResult> IndexMain(string LancheGenero, string searchString)
+        {  Autenticacao.CheckLogin(this);
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Lanche orderby m.Genero select m.Genero;
 
-            if(string.IsNullOrEmpty(categoria))
-            {
-                lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
-                categoria = "Todos os lanches";
-            }
-            else
-            {
-                if(string.Equals("Normal", _categoria, StringComparison.OrdinalIgnoreCase))
-                {
-                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Normal")).OrderBy(l => l.Nome);
-                }
-                else
-                {
-                    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome.Equals("Natural")).OrderBy(l => l.Nome);
-                }
+            var movies = from m in _context.Lanche select m;
 
-                categoriaAtual = _categoria;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Nome.Contains(searchString));
             }
 
-            var lanchesListViewModel = new LancheListViewModel
+            if (!string.IsNullOrEmpty(LancheGenero))
             {
-                Lanches = lanches,
-                CategoriaAtual = categoriaAtual
+                movies = movies.Where(x => x.Genero == LancheGenero);
+            }
+
+            var lancheGeneroVM = new LancheGeneroViewModel
+            {
+                Generos = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Lanches = await movies.ToListAsync()
             };
 
-            return View(lanchesListViewModel);
-
+            return View(lancheGeneroVM);
         }
-        public IActionResult Details(int lancheId)
+        
+        [HttpPost]
+        public string IndexMain(string searchString, bool notUsed)
         {
-            var lanche = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheId);
-            if(lanche == null)
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+        // GET: Movies
+        public async Task<IActionResult> Index()
+        {
+            Autenticacao.CheckLogin(this);
+            return View(await _context.Lanche.ToListAsync());
+        }
+
+        // GET: Movies/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
             {
-                return View("~/View/Error/Error.cshtml");
+                return NotFound();
+            }
+
+            var movie = await _context.Lanche
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
+        // GET: Movies/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Movies/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Nome,Genero,Preco,ImagemUrl,ImagemThumbnailUrl")] Lanche lanche)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(lanche);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             return View(lanche);
         }
-        public IActionResult Search(string searchString)
+
+        // GET: Movies/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            string _searchString = searchString;
-            IEnumerable<Lanche> lanches;
-            string _categoriaAtual = string.Empty;
-
-            if(string.IsNullOrEmpty(_searchString))
+            if (id == null)
             {
-                lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
-            }
-            else
-            {
-                lanches = _lancheRepository.Lanches.Where(l => l.Nome.ToLower().Contains(_searchString.ToLower()));
+                return NotFound();
             }
 
-            return View("~/Views/Lanche/List.cshtml", new LancheListViewModel { Lanches=lanches, CategoriaAtual="Todos os Lanches"});
+            var movie = await _context.Lanche.FindAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
+        }
+
+        // POST: Movies/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Genero,Preco,ImagemUrl,ImagemThumbnailUrl")] Lanche lanche)
+        {
+            if (id != lanche.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(lanche);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MovieExists(lanche.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(lanche);
+        }
+
+        // GET: Movies/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Lanche
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var movie = await _context.Lanche.FindAsync(id);
+            _context.Lanche.Remove(movie);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool MovieExists(int id)
+        {
+            return _context.Lanche.Any(e => e.Id == id);
         }
     }
 }
