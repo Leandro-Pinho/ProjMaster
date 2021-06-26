@@ -1,11 +1,14 @@
 @model Usuario
-@{
-    ViewData["Title"] = "Logout";
-}
-<h2>Logout</h2>
-<p id="pMensagem">@ViewBag.Mensagem</p>
-<form asp-action="Logout" method="POST">
-    <p>
-        <input type="submit" value="Sair" />
-    </p>
+
+<div class="container mt-4">
+<h1>ALERTA!</h1>
+<h2>Tem certeza que deseja excluir o usuário @Model.Nome (@Model.login)?</h2>
+<p>A exclusão é irreversível</p>
+
+<form action="ExcluirUsuario" method="post">
+    <input type="hidden" name="id" value="@Model.Id">
+
+    <input name="decisao" type="submit" value="CANCELAR">
+    <input name="decisao" type="submit" value="EXCLUIR">
 </form>
+</div>

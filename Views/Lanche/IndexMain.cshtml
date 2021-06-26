@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="~/imagem/sucos.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="~/imagem/bebi.jpg" alt="Third slide">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>As Melhores Bebidas</h5>
                             <p>Para um melhor acompanhamento em todas as ocasiões</p>
@@ -46,16 +46,17 @@
         </section>
 
 <div>
-    <nav class="navbar navbar-light bg-warning justify-content-between">
+    <nav class="navbar navbar-light justify-content-between border-2 border-dark border-top">
+        <div class="container">
         <a class="navbar-brand">Pizzas</a>
         <form class="form-inline" asp-controller="Lanche" asp-action="IndexMain" method="get">
             <select class="custom-select" asp-for="LancheGenero" asp-items="Model.Generos">
                 <option selected value="">Todos</option>
             </select>
-            <br/>
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisa" aria-label="Search" asp-for="SearchString">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><ion-icon name="search-outline"></ion-icon></button>
+            <button class="btn btn-outline-light" type="submit"><ion-icon size="small" name="search-outline"></ion-icon></button>
         </form>
+        </div>
     </nav>
 </div>
 <div class="container">
@@ -70,7 +71,7 @@
                                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nome)</h5>
                                 <p class="card-text">@Html.DisplayFor(modelItem => item.Genero)</p>
                                 <p>
-                                    @Html.DisplayFor(modelItem => item.Preco)
+                                    @Html.DisplayFor(modelItem => item.Preco)  |
                                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                                 </p>
                                 <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-LancheId="@item.Id">Incluir no Carrinho</a>

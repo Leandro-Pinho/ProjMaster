@@ -28,16 +28,13 @@ namespace ProjMaster.Models
         }
         public IActionResult RegistrarUsuarios()
         {
-            Autenticacao.CheckLogin(this);
-            Autenticacao.verificaSeUsuarioEAdmin(this);
+            
             return View();
         }
         [HttpPost]
         public IActionResult RegistrarUsuarios(Usuario novoUser)
         {
-            Autenticacao.CheckLogin(this);
-            Autenticacao.verificaSeUsuarioEAdmin(this);
-
+            
             novoUser.senha = Criptografo.TextoCriptografado(novoUser.senha);
 
             UsuarioService us = new UsuarioService();
@@ -79,7 +76,7 @@ namespace ProjMaster.Models
         public IActionResult Sair()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("IndexMain", "Lanche");
         }
     }
 }

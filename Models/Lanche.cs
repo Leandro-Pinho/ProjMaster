@@ -9,9 +9,9 @@ namespace ProjMaster.Models
         public string Nome { get; set; }
 
         public string Genero { get; set; }
-        [Range(1, 100)]
+        [Range(1, 1000)]
         [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(5,2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Preco { get; set; }
 
         [StringLength(200)]

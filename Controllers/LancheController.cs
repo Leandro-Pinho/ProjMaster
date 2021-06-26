@@ -21,7 +21,7 @@ namespace ProjMaster.Controllers
 
         // GET: Movies
         public async Task<IActionResult> IndexMain(string LancheGenero, string searchString)
-        {  Autenticacao.CheckLogin(this);
+        {  
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Lanche orderby m.Genero select m.Genero;
 
@@ -79,6 +79,7 @@ namespace ProjMaster.Controllers
         // GET: Movies/Create
         public IActionResult Create()
         {
+            Autenticacao.CheckLogin(this);
             return View();
         }
 
@@ -101,6 +102,7 @@ namespace ProjMaster.Controllers
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            Autenticacao.CheckLogin(this);
             if (id == null)
             {
                 return NotFound();
@@ -152,6 +154,7 @@ namespace ProjMaster.Controllers
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            Autenticacao.CheckLogin(this);
             if (id == null)
             {
                 return NotFound();

@@ -6,6 +6,17 @@
     --textColor: #6b6f81;
 }
 
+.jumbotron {
+    background-color: #ff6c47;
+}
+ion-icon {
+    font-size: 32px;
+}
+
+nav {
+    background-color: #ff6c47;
+}
+
 * {
     padding: 0;
     margin: 0;

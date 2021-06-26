@@ -2,17 +2,17 @@
 
 namespace ProjMaster.Migrations
 {
-    public partial class migracaoDois : Migration
+    public partial class migracaodois : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<decimal>(
                 name: "Preco",
                 table: "Lanche",
-                type: "decimal(5,2)",
+                type: "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(3,2)");
+                oldType: "decimal(5,2)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -20,10 +20,10 @@ namespace ProjMaster.Migrations
             migrationBuilder.AlterColumn<decimal>(
                 name: "Preco",
                 table: "Lanche",
-                type: "decimal(3,2)",
+                type: "decimal(5,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(5,2)");
+                oldType: "decimal(18,2)");
         }
     }
 }

@@ -30,7 +30,7 @@ namespace ProjMaster.Controllers
         {
             if(Autenticacao.verificaLoginSenha(login,senha,this))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexMain", "Lanche");
             }
             else
             {
@@ -41,7 +41,7 @@ namespace ProjMaster.Controllers
         public IActionResult logout()
         {
             HttpContext.Session.Clear();//Limpar toda sessão
-            return View("Index");
+            return RedirectToAction("IndexMain", "Lanche");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
@@ -9,33 +10,55 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-danger box-shadow mb-3 justify-content-center">
+        <nav class="navbar navbar-expand-lg navbar-light justify-content-between border-2 border-dark border-bottom">
             <div class="container">
                 <a class="navbar-brand" asp-controller="Lanche" asp-action="IndexMain">Master Pizzaria</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li> @await Component.InvokeAsync("CarrinhoCompraResumo")</li>
-                    </ul>
-                    <li class="">
-                                    <a class="nav-link text-light" href="/Usuarios/ListaDeUsuarios" id="menuUsuarios">Usuarios</a>
-                                </li>
-
-                                <li class="" >
-                                    <a class="btn btn-outline-light my-2 my-sm-0" href="/Usuarios/Sair" id="menuUsuarios">Logout</a>
-                                </li>
+                <div>
+                    @if(Context.Session.GetInt32("tipo") == null)
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                           <li class="nav-link text-light">
+                                <a class="text-light" href="/Usuarios/RegistrarUsuarios" id="menuUsuarios">Registrar</a>  |
+                           </li>
+                                <a class="text-light" href="/Home/Login" id="menuUsuarios"><ion-icon name="person-outline"></ion-icon></a>
+                            
+                        </ul>
+                    } else if (Context.Session.GetInt32("tipo") == 0)
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            @await Component.InvokeAsync("CarrinhoCompraResumo")
+                            <li class="nav-link text-dark">
+                                <span>Olá @Context.Session.GetString("Nome")</span> |
+                                <a href="/Usuarios/Sair" class="text-danger">SAIR</a>
+                            </li>
+                        </ul>
+                    } else if (Context.Session.GetInt32("tipo") == 1)  
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            @await Component.InvokeAsync("CarrinhoCompraResumo")
+                            <li class="">
+                                <a class="nav-link text-light" href="/Usuarios/ListaDeUsuarios" id="menuUsuarios">Usuarios</a>
+                            </li>
+                            <li class="">
+                                <a class="nav-link text-light" href="/Lanche/Index" id="menuUsuarios">Lanches</a>
+                            </li>
+                            
+                            <li class="nav-link text-dark">
+                                <span>Olá @Context.Session.GetString("Nome")</span> |
+                                <a href="/Usuarios/Sair" class="text-danger">SAIR</a>
+                            </li>
+                        </ul>
+                    }          
                 </div>
             </div>
         </nav>
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </header>
     
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted mt-200">
         <div class="container">
             &copy; 2020 - Master Pizza 
         </div>

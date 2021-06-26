@@ -9,8 +9,8 @@ using ProjMaster.Data;
 namespace ProjMaster.Migrations
 {
     [DbContext(typeof(ProjMasterContext))]
-    [Migration("20210624214419_migracao")]
-    partial class migracao
+    [Migration("20210626034225_migracaodois")]
+    partial class migracaodois
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,7 +59,7 @@ namespace ProjMaster.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(3,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

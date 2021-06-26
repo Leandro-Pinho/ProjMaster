@@ -3,6 +3,7 @@ using ProjMaster.Models;
 using ProjMaster.Repositories;
 using ProjMaster.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using ProjMaster.Controllers;
 
 namespace MvcMovie.Controllers
 {
@@ -18,6 +19,7 @@ namespace MvcMovie.Controllers
         }
         public IActionResult Index()
         {
+            Autenticacao.CheckLogin(this);
             var itens = _carrinhoCompra.GetCarrinhoCompraItens();
             _carrinhoCompra.CarrinhoCompraItens = itens;
 
@@ -31,6 +33,7 @@ namespace MvcMovie.Controllers
         }
         public RedirectToActionResult AdicionarItemNoCarrinhoCompra( int lancheId)
         {
+            Autenticacao.CheckLogin(this);
             var lancheSelecionado = _lancheRepository.lanches.FirstOrDefault(p => p.Id == lancheId );
 
             if (lancheSelecionado != null)
@@ -41,6 +44,7 @@ namespace MvcMovie.Controllers
         }
         public IActionResult RemoverItemNoCarrinhoCompra( int lancheId)
         {
+            Autenticacao.CheckLogin(this);
             var lancheSelecionado = _lancheRepository.lanches.FirstOrDefault(p => p.Id == lancheId );
 
             if (lancheSelecionado != null)

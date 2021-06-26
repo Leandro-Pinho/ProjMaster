@@ -9,8 +9,8 @@ using ProjMaster.Data;
 namespace ProjMaster.Migrations
 {
     [DbContext(typeof(ProjMasterContext))]
-    [Migration("20210623181240_MigracaoInicial")]
-    partial class MigracaoInicial
+    [Migration("20210625195509_migracaoInicial")]
+    partial class migracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,10 +51,6 @@ namespace ProjMaster.Migrations
                     b.Property<string>("Genero")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("ImagemThumbnailUrl")
-                        .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
-                        .HasMaxLength(200);
-
                     b.Property<string>("ImagemUrl")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
@@ -63,7 +59,7 @@ namespace ProjMaster.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
@@ -196,7 +192,7 @@ namespace ProjMaster.Migrations
                         .IsRequired();
 
                     b.HasOne("ProjMaster.Models.Pedido", "Pedido")
-                        .WithMany()
+                        .WithMany("PedidoItens")
                         .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

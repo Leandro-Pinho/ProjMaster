@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjMaster.Migrations
 {
-    public partial class MigracaoInicial : Migration
+    public partial class migracaoInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,9 +16,8 @@ namespace ProjMaster.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(nullable: true),
                     Genero = table.Column<string>(nullable: true),
-                    Preco = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    ImagemUrl = table.Column<string>(maxLength: 200, nullable: true),
-                    ImagemThumbnailUrl = table.Column<string>(maxLength: 200, nullable: true)
+                    Preco = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    ImagemUrl = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
