@@ -1,0 +1,126 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primaryColor: #E32E00;
+    --accentColor: #EDEEF4;
+    --textColor: #6b6f81;
+}
+
+.jumbotron {
+    background-color: #ff6c47;
+}
+ion-icon {
+    font-size: 32px;
+}
+
+nav {
+    background-color: #ff6c47;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.top-header,
+.bottom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.top-header {
+    background: var(--primaryColor);
+    color: #fff;
+}
+
+.nav-icons ion-icon {
+    font-size: 1.3rem;
+    margin-left: 1rem;
+}
+
+.bottom-header {
+    padding: .3rem 2rem;
+}
+
+.brand {
+    display: flex;
+}
+
+.brand img {
+    margin-right: .5rem;
+}
+
+.brand h5 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+nav ul {
+    display: flex;
+}
+nav li {
+    margin-left: 1rem;
+}
+
+nav li a {
+    font-size: .8rem;
+    color: var(--textColor);
+    font-weight:500;
+}
+
+nav label {
+    font-size: 2rem;
+    display: none;
+}
+
+/* mobile nav */
+#toggle-nav {
+    display: none;
+}
+
+#toggle-nav:checked ~ .mobile-nav {
+    right: 0;
+}
+
+.mobile-nav {
+    position: fixed;
+    z-index: 100;
+    height: 100%;
+    right: -305px;
+    top: 0;
+    width: 300px;
+    background: var(--accentColor);
+    transition: right 300ms;
+}
+
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 1rem 1.5rem;
+}
+
+.close-btn label {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.mobile-nav-menu {
+    padding: .4rem 1.5rem;
+}
+
+.mobile-nav-menu li {
+    margin-bottom: 1rem;
+}
+
+.mobile-nav-menu li a {
+    font-size: 1.3rem;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+}

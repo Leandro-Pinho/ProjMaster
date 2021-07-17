@@ -284,3 +284,4 @@ C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\View
 C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\ListaDeUsuarios.cshtml.g.cs
 C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\NeedAdmin.cshtml.g.cs
 C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\RegistrarUsuarios.cshtml.g.cs
+C:\Users\ADMIN\Desktop\Curso Senac\ProjMaster\obj\Debug\netcoreapp3.1\Razor\_Layout.cshtml.g.cs
